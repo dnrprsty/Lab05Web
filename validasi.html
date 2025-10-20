@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Validasi Form Mahasiswa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        form {
+            width: 320px;
+            padding: 20px;
+            border-radius: 12px;
+            background: #f4f4f4;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input[type="text"], input[type="email"], input[type="number"] {
+            width: 95%;
+            padding: 8px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+        input[type="submit"] {
+            background: #222;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background: #444;
+        }
+    </style>
+</head>
+<body>
+    <h2>Form Validasi Mahasiswa</h2>
+    <form name="formValidasi" onsubmit="return validasiForm()">
+        Nama: <br>
+        <input type="text" id="nama"><br>
+
+        NIM: <br>
+        <input type="text" id="nim"><br>
+
+        Kelas: <br>
+        <input type="text" id="kelas"><br>
+
+        Email: <br>
+        <input type="email" id="email"><br>
+
+        Umur: <br>
+        <input type="number" id="umur"><br>
+
+        <input type="submit" value="Kirim">
+    </form>
+
+    <script>
+        function validasiForm() {
+            let nama = document.getElementById("nama").value;
+            let nim = document.getElementById("nim").value;
+            let kelas = document.getElementById("kelas").value;
+            let email = document.getElementById("email").value;
+            let umur = document.getElementById("umur").value;
+
+            if (nama == "" || nim == "" || kelas == "" || email == "" || umur == "") {
+                alert("Semua field harus diisi!");
+                return false;
+            }
+
+            if (!/^[0-9]+$/.test(nim)) {
+                alert("NIM hanya boleh berisi angka!");
+                return false;
+            }
+
+            if (umur < 18) {
+                alert("Umur minimal 18 tahun!");
+                return false;
+            }
+
+            alert(
+                "Data berhasil dikirim!\n\n" +
+                "Nama : " + nama + "\n" +
+                "NIM : " + nim + "\n" +
+                "Kelas : " + kelas + "\n" +
+                "Email : " + email + "\n" +
+                "Umur : " + umur
+            );
+            return true;
+        }
+    </script>
+</body>
+</html>
